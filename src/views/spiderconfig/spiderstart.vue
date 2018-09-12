@@ -52,7 +52,7 @@ export default {
 			isNext: false, //是否点击了下一步，获取点击事件
 			button: '',
 			elements: [],
-			tooltipText: '请点击表格头部进行采集',
+			tooltipText: '请选择所采信息，并点击“确定选择”按钮进行采集',
 			infoXPath: '', //详情的xpath
 			spiderConfirmVisible: false,
 			dialogLoading: false,
