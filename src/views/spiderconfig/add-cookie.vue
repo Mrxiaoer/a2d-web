@@ -60,10 +60,9 @@ export default {
 	},
 	methods: {
 		// 初始化表单数据
+
 		init(id,system,url) {
 			this.dataForm.linkId = id;
-			this.dataForm.system = system;
-			this.dataForm.url = url;
 			this.visible = true;
 			this.dataForm.cookie = [];
 			this.dataForm.cookielist = 0;
@@ -76,6 +75,8 @@ export default {
 						if (data && data.code === 0) {
 							this.dataForm.cookie = data.cookie;
 							this.dataForm.cookielist = data.length;
+							this.dataForm.system = system;
+							this.dataForm.url = url;
 						}
 					});
 				}
