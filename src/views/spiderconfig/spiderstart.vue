@@ -1,8 +1,11 @@
 <template>
 	<section>
 		<el-row :gutter="24">
-			<el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="8">
+			<el-col :xs="9" :sm="9" :md="9" :lg="9" :xl="8">
 				<el-input v-model="url" readonly><template slot="prepend">采集网址</template></el-input>
+			</el-col>
+			<el-col :xs="3" :sm="3" :md="3" :lg="3" :xl="8">
+				<el-button type="primary" @click="Handle()" v-if="content">爬取表头信息</el-button>
 			</el-col>
 			<el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="8">
 				<el-button type="primary" @click="confirmHandle()" v-if="content">确定选择</el-button>
