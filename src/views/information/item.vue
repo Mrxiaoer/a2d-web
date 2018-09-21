@@ -6,7 +6,7 @@
       </el-form-item>
       <el-form-item>
         <el-button icon="el-icon-search" @click="getDataList()">搜索</el-button>
-        <el-button type="primary" @click="exportHandle()">导出数据</el-button>
+        <!-- <el-button type="primary" @click="exportHandle()">导出数据</el-button> -->
         <el-button type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
       </el-form-item>
     </el-form>

@@ -16,7 +16,7 @@
 			</el-form>
 		</section>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="visible = false">取消</el-button>
+      <el-button @click="visible = false">暂不操作</el-button>
       <el-button type="primary" @click="save()">保存</el-button>
     </span>
   </el-dialog>

@@ -141,13 +141,15 @@ export default {
 		setSize() {
 			const content = document.getElementById('spiderContent');
 			const iframe = document.getElementById('iframe');
-			const deviceWidth = document.documentElement.clientWidth;
-			const deviceHeight = document.documentElement.clientHeight;
-			// content.style.width = deviceWidth + 'px';
-			content.style.width = '100%';
+			// const deviceWidth = document.documentElement.clientWidth;
+			// const deviceHeight = document.documentElement.clientHeight;
+			const deviceWidth = document.body.clientWidth - 240;
+			const deviceHeight = document.body.clientHeight;
+			content.style.width = deviceWidth + 'px';
+			// content.style.width = '100%';
 			content.style.height = deviceHeight + 'px';
-			// iframe.style.width = deviceWidth + 'px';
-			iframe.style.width = '100%';
+			iframe.style.width = deviceWidth + 'px';
+			// iframe.style.width = '100%';
 			iframe.style.height = deviceHeight + 'px';
 		},
 		// 渲染iframe的字符串内容
