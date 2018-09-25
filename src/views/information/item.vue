@@ -7,7 +7,7 @@
       <el-form-item>
         <el-button icon="el-icon-search" @click="getDataList()">搜索</el-button>
         <!-- <el-button type="primary" @click="exportHandle()">导出数据</el-button> -->
-        <el-button type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
+        <!-- <el-button type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button> -->
       </el-form-item>
     </el-form>
     <el-table :data="dataList" v-loading="dataListLoading" @selection-change="selectionChangeHandle" stripe border style="width: 100%;">
@@ -19,7 +19,7 @@
         <template slot-scope="scope">
           <el-button size="small" icon="el-icon-info" @click="addOrUpdateHandle(scope.row.elementId)">详情</el-button>
           <el-button size="small" icon="el-icon-edit" @click="addOrUpdateHandle(scope.row.elementId, true)">编辑</el-button>
-          <el-button size="small" icon="el-icon-delete" @click="deleteHandle(scope.row.elementId)">删除</el-button>
+          <!-- <el-button size="small" icon="el-icon-delete" @click="deleteHandle(scope.row.elementId)">删除</el-button> -->
         </template>
       </el-table-column>
     </el-table>

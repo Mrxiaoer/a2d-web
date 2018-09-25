@@ -8,7 +8,7 @@
         <el-input v-model="dataForm.module" placeholder="请输入模块名称" clearable></el-input>
       </el-form-item>
 			<el-form-item>
-				<el-select v-model="dataForm.changeState" placeholder="是否转化" clearable>
+				<el-select v-model="dataForm.changeState" placeholder="是否转换" clearable>
 					<el-option
 						v-for="item in changeStateList"
 						:key="item.value"
@@ -28,14 +28,14 @@
       <el-table-column prop="createTime" align="center" label="采集时间"></el-table-column>
       <el-table-column prop="changeState" align="center" label="状态" width="105">
 				<template slot-scope="scope">
-						<el-tag size="medium" :type="'info'" v-if="scope.row.changeState == 0">未转化</el-tag>
-						<el-tag size="medium" :type="'warning'" v-else-if="scope.row.changeState == 1">转化未完全</el-tag>
-						<el-tag size="medium" :type="'success'" v-else>转化完全</el-tag>
+						<el-tag size="medium" :type="'info'" v-if="scope.row.changeState == 0">未转换</el-tag>
+						<el-tag size="medium" :type="'warning'" v-else-if="scope.row.changeState == 1">转换未完全</el-tag>
+						<el-tag size="medium" :type="'success'" v-else>转换完全</el-tag>
 				</template>
 			</el-table-column>
       <el-table-column width="200" align="center" label="操作">
         <template slot-scope="scope">
-          <el-button size="small" @click="linkHandle(scope.row.id, 'item')">查看已转化</el-button>
+          <el-button size="small" @click="linkHandle(scope.row.id, 'item')">查看已转换</el-button>
           <el-button size="small" type="primary" @click="linkHandle(scope.row.id, 'item-conversion')">转换</el-button>
         </template>
       </el-table-column>
@@ -70,15 +70,15 @@ export default {
 			changeStateList: [
 				{
 					value: 0,
-					label: '未转化'
+					label: '未转换'
 				},
 				{
 					value: 1,
-					label: '转化未完全'
+					label: '转换未完全'
 				},
 				{
 					value: 2,
-					label: '转化完全'
+					label: '转换完全'
 				}
 			],
 			dataList: [],
