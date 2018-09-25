@@ -31,6 +31,7 @@ export default new Router({
         { path: '/information-catalog', component: _import('information/catalog'), name: 'catalog', desc: '信息资源目录', meta: { isTab: true } },
         { path: '/information', component: _import('information/index'), name: 'information', desc: '信息资源', meta: { isTab: true } },
         { path: '/item', component: _import('information/item'), name: 'item', desc: '信息项', meta: { isTab: true } },
+        { path: '/details', component: _import('information/details'), name: 'details', desc: '对比详情况', meta: { isTab: true } },
         { path: '/item-conversion', component: _import('information/item-conversion'), name: 'item-conversion', desc: '数据转换', meta: { isTab: true } },
 
         { path: '/home', component: _import('home/index'), name: 'home', desc: '首页' },

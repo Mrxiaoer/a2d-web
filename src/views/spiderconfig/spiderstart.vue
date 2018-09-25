@@ -145,9 +145,9 @@ export default {
 			const content = document.getElementById('spiderContent');
 			const iframe = document.getElementById('iframe');
 			// const deviceWidth = document.documentElement.clientWidth;
-			// const deviceHeight = document.documentElement.clientHeight;
+			const deviceHeight = document.documentElement.clientHeight;
 			const deviceWidth = document.body.clientWidth - 240;
-			const deviceHeight = document.body.clientHeight;
+			// const deviceHeight = document.body.clientHeight;
 			content.style.width = deviceWidth + 'px';
 			// content.style.width = '100%';
 			content.style.height = deviceHeight + 'px';
