@@ -1,13 +1,13 @@
 <template>
 	<section>
 		<el-row :gutter="24">
-			<el-col :xs="9" :sm="9" :md="9" :lg="9" :xl="8">
+			<el-col :xs="8" :sm="8" :md="8" :lg="8" :xl="8">
 				<el-input v-model="url" readonly><template slot="prepend">采集网址</template></el-input>
 			</el-col>
-			<el-col :xs="3" :sm="3" :md="3" :lg="3" :xl="8">
-				<el-button type="primary" @click="Handle()" v-if="content">爬取表头信息</el-button>
+			<el-col :xs="3" :sm="3" :md="3" :lg="3" :xl="3">
+				<el-button type="primary" @click="startSpider()" v-if="content">爬取表头信息</el-button>
 			</el-col>
-			<el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="8">
+			<el-col :xs="4" :sm="4" :md="4" :lg="5" :xl="8">
 				<el-button type="primary" @click="confirmHandle()" v-if="content">确定选择</el-button>
 			</el-col>
 			<el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="8">
@@ -55,6 +55,7 @@ export default {
 			isNext: false, //是否点击了下一步，获取点击事件
 			button: '',
 			elements: [],
+			thead: '',
 			tooltipText: '请选择所采信息，并点击“确定选择”按钮进行采集',
 			infoXPath: '', //详情的xpath
 			spiderConfirmVisible: false,
@@ -169,24 +170,28 @@ export default {
 		startSpider() {
 			const that = this;
 			const thead = this.getTheadElement();
+			this.thead = thead;
+			console.log('thead', thead);
+
 			if (thead) {
-				thead.onclick = function() {
-					this.style.backgroundColor = '#17b3a3';
-					that.confirmHandle();
-				};
+				// thead.onclick = function() {
+				thead.style.backgroundColor = '#17b3a3';
+				that.confirmHandle(thead);
+				// };
 			}
 		},
 		// 弹窗-询问是否开始采集
-		confirmHandle() {
+		confirmHandle(thead) {
 			this.$confirm('您已选择了数据项，是否进行下一步操作?', '操作提示', {
 				confirmButtonText: '开始采集',
 				cancelButtonText: '取消',
 				type: 'warning'
 			})
 				.then(() => {
-					this.spiderHandle();
+					this.spiderHandle(thead);
 				})
 				.catch(() => {
+					if (thead) thead.style.backgroundColor = '';
 					this.$message({
 						type: 'info',
 						message: '已取消采集'
@@ -194,20 +199,22 @@ export default {
 				});
 		},
 		// 获取采集项目后弹窗采集项目列表
-		async spiderHandle() {
-			const texts = await this.getSpiderItems();
+		async spiderHandle(thead) {
+			const texts = await this.getSpiderItems(thead);
 			console.log('texts', texts);
-			if (texts.length > 0) {
+			if (texts && texts.length > 0) {
 				this.spiderConfirmVisible = true;
 				this.$nextTick(() => {
-					this.$refs.spiderConfirm.init(texts);
+					this.$refs.spiderConfirm.init(texts, thead);
 				});
 			}
 		},
 		// 从后台获取采集表头项目
-		async getSpiderItems() {
+		async getSpiderItems(thead) {
 			// const thead = this.getTheadElement();
-			const xpaths = this.getElementsXpath();
+			const xpaths = thead
+				? this.getTheadXpath(thead)
+				: this.getElementsXpath();
 
 			if (xpaths) {
 				const params = {
@@ -284,11 +291,18 @@ export default {
 				}
 			}
 		},
+		// 获取选择元素的xpath
 		getElementsXpath() {
 			if (this.elements.length > 0) {
 				return this.elements.map(item => {
 					return getXPathForElement(item).replace('html[1]', 'html');
 				});
+			}
+		},
+		// 获取表头的xpath
+		getTheadXpath(thead) {
+			if (thead) {
+				return getXPathForElement(thead).replace('html[1]', 'html');
 			}
 		},
 		// 获取thead元素

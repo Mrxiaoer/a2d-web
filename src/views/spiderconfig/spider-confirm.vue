@@ -16,7 +16,7 @@
 			</el-form>
 		</section>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="visible = false">暂不操作</el-button>
+      <el-button @click="cancel()">暂不操作</el-button>
       <el-button type="primary" @click="save()">保存</el-button>
     </span>
   </el-dialog>
@@ -31,6 +31,7 @@ export default {
 			visible: false,
 			dataListLoading: false,
 			tableData: [],
+			thead: '',
 			multipleSelection: [],
 			dataForm: {
 				infoName: ''
@@ -47,7 +48,8 @@ export default {
 	},
 	methods: {
 		// 初始化
-		init(texts) {
+		init(texts, thead) {
+			this.thead = thead;
 			this.visible = true;
 			this.dataListLoading = true;
 
@@ -108,6 +110,11 @@ export default {
 					});
 				}
 			});
+		},
+		// 取消选择
+		cancel() {
+			this.visible = false;
+			if (this.thead) this.thead.style.backgroundColor = '';
 		},
 		removeTabs(tabName) {
 			const newTabs = this.$store.state.contentTabs.filter(
