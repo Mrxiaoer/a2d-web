@@ -1,16 +1,16 @@
 <template>
 	<section>
 		<el-row :gutter="24">
-			<el-col :xs="8" :sm="8" :md="8" :lg="8" :xl="8">
+			<el-col :xs="10" :sm="10" :md="10" :lg="10" :xl="10">
 				<el-input v-model="url" readonly><template slot="prepend">采集网址</template></el-input>
 			</el-col>
 			<el-col :xs="3" :sm="3" :md="3" :lg="3" :xl="3">
 				<el-button type="primary" @click="startSpider()" v-if="content">爬取表头信息</el-button>
 			</el-col>
-			<el-col :xs="4" :sm="4" :md="4" :lg="5" :xl="8">
+			<el-col :xs="3" :sm="3" :md="3" :lg="3" :xl="3">
 				<el-button type="primary" @click="confirmHandle()" v-if="content">确定选择</el-button>
 			</el-col>
-			<el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="8">
+			<el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="4">
 			  <el-select v-model="waite" clearable placeholder="请选择等待时间" v-if="content">
 			    <el-option
 			      v-for="item in options"
