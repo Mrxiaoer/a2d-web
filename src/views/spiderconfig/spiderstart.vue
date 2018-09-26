@@ -302,7 +302,7 @@ export default {
 		// 获取表头的xpath
 		getTheadXpath(thead) {
 			if (thead) {
-				return getXPathForElement(thead).replace('html[1]', 'html');
+				return [getXPathForElement(thead).replace('html[1]', 'html')];
 			}
 		},
 		// 获取thead元素
